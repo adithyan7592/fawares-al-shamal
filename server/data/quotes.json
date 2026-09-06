@@ -1,0 +1,22 @@
+[
+  {
+    "_id": "1788638582989-s9b6d8",
+    "name": "adithyan",
+    "number": "7592869704",
+    "location": "india",
+    "description": "test",
+    "status": "new",
+    "createdAt": "2026-09-05T20:03:02.989Z",
+    "updatedAt": "2026-09-05T20:03:02.989Z"
+  },
+  {
+    "_id": "1788638407651-w6d0su",
+    "name": "Website test",
+    "number": "0543613464",
+    "location": "Dammam",
+    "description": "Test quote request to confirm email delivery.",
+    "status": "new",
+    "createdAt": "2026-09-05T20:00:07.651Z",
+    "updatedAt": "2026-09-05T20:00:07.651Z"
+  }
+]

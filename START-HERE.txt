@@ -1,0 +1,13 @@
+Fawares Al Shamal website (MERN)
+
+1. Unzip this file. You should get a folder named fawares-al-shamal-website.
+2. Open that folder (you should see package.json, README.md, client, server).
+3. In a terminal:
+
+   npm install
+   copy .env.example .env     (Windows)
+   npm run dev
+
+4. Open http://127.0.0.1:43145
+
+If the downloaded zip is 0 KB, the download failed — try again, or clone the repo instead.
