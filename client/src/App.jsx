@@ -18,6 +18,7 @@ import QuoteForm from "./QuoteForm.jsx";
 import { copy } from "./copy.js";
 
 const PHONE = import.meta.env.VITE_PHONE || "+966 54 361 3464";
+const PHONE_2 = import.meta.env.VITE_PHONE_2 || "+966 535133064";
 const EMAIL = import.meta.env.VITE_EMAIL || "infofawares@gmail.com";
 const WHATSAPP = import.meta.env.VITE_WHATSAPP || "966543613464";
 
@@ -283,12 +284,9 @@ useEffect(() => {
             {t.process.steps.map((step, i) => {
               const Icon = STEP_ICONS[i];
               return (
-                <div key={step.n} className="step-line relative text-center">
+                <div key={step.title} className="step-line relative text-center">
                   <div className="mx-auto grid h-14 w-14 place-items-center rounded-full bg-moss-400/20 text-forest-800">
                     <Icon size={22} />
-                  </div>
-                  <div className="mx-auto -mt-2 grid h-7 w-7 place-items-center rounded-full bg-forest-800 text-[11px] font-bold text-white">
-                    {step.n}
                   </div>
                   <h3 className="mt-3 text-sm font-bold uppercase tracking-wide text-forest-800">{step.title}</h3>
                   <p className="mt-2 text-sm text-stone-600">{step.text}</p>
@@ -377,12 +375,17 @@ useEffect(() => {
           </div>
 
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            <a href={`tel:${PHONE.replace(/\s/g, "")}`} className="rounded-xl bg-white/5 p-4 hover:bg-white/10">
+            <div className="rounded-xl bg-white/5 p-4">
               <p className="flex items-center gap-2 text-sm text-moss-300">
                 <Phone size={16} /> {t.contact.call}
               </p>
-              <p className="mt-1 font-semibold">{PHONE}</p>
-            </a>
+              <a href={`tel:${PHONE.replace(/\s/g, "")}`} className="mt-1 block font-semibold hover:text-moss-300">
+                {PHONE}
+              </a>
+              <a href={`tel:${PHONE_2.replace(/\s/g, "")}`} className="mt-1 block font-semibold hover:text-moss-300">
+                {PHONE_2}
+              </a>
+            </div>
             <a href={`mailto:${EMAIL}`} className="rounded-xl bg-white/5 p-4 hover:bg-white/10">
               <p className="flex items-center gap-2 text-sm text-moss-300">
                 <Mail size={16} /> {t.contact.email}
@@ -393,7 +396,7 @@ useEffect(() => {
               <p className="flex items-center gap-2 text-sm text-moss-300">
                 <MapPin size={16} /> {t.contact.location}
               </p>
-              <p className="mt-1 font-semibold">{t.contact.locationValue}</p>
+              <p className="mt-1 text-sm font-semibold leading-snug">{t.contact.locationValue}</p>
             </div>
             <a
               href={`https://wa.me/${WHATSAPP}`}
