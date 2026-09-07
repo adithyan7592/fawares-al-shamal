@@ -37,13 +37,29 @@ function htmlBody(quote) {
 export async function sendQuoteEmail(quote) {
   const host = process.env.SMTP_HOST || "smtp.gmail.com";
   const user = process.env.SMTP_USER?.trim();
-  const pass = process.env.SMTP_PASS?.trim();
+  const pass = process.env.SMTP_PASS?.replaceAll(" ", "").trim();
+  const to = toAddress();
+  const from = process.env.SMTP_FROM || user;
+
   if (!user || !pass) {
-    console.warn("Quote email skipped: set SMTP_USER and SMTP_PASS (Gmail app password) in .env");
-    return false;
+    const reason = "SMTP_USER or SMTP_PASS is missing";
+    console.warn("[quote-email]", reason, {
+      hasUser: Boolean(user),
+      hasPass: Boolean(pass),
+    });
+    return { ok: false, error: reason };
   }
 
   const port = Number(process.env.SMTP_PORT) || 587;
+  console.log("[quote-email] sending", {
+    host,
+    port,
+    user,
+    from,
+    to,
+    passLength: pass.length,
+  });
+
   const transporter = nodemailer.createTransport({
     host,
     port,
@@ -51,14 +67,26 @@ export async function sendQuoteEmail(quote) {
     auth: { user, pass },
   });
 
-  await transporter.sendMail({
-    from: `"Fawares Al Shamal website" <${process.env.SMTP_FROM || user}>`,
-    to: toAddress(),
-    replyTo: undefined,
-    subject: `Quote request from ${quote.name}`,
-    text: messageBody(quote),
-    html: htmlBody(quote),
-  });
-  console.log("Quote email sent via Gmail SMTP to", toAddress());
-  return true;
+  try {
+    const info = await transporter.sendMail({
+      from: `"Fawares Al Shamal website" <${from}>`,
+      to,
+      subject: `Quote request from ${quote.name}`,
+      text: messageBody(quote),
+      html: htmlBody(quote),
+    });
+    console.log("[quote-email] sent", { to, messageId: info.messageId, response: info.response });
+    return { ok: true };
+  } catch (err) {
+    const details = {
+      message: err.message,
+      code: err.code,
+      command: err.command,
+      response: err.response,
+      responseCode: err.responseCode,
+    };
+    console.error("[quote-email] failed", details);
+    if (err.stack) console.error(err.stack);
+    return { ok: false, error: err.message, details };
+  }
 }

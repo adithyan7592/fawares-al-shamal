@@ -59,9 +59,20 @@ app.post("/api/quotes", async (req, res) => {
       description: String(req.body.description).trim(),
     };
     const quote = await createQuote(payload);
-    const emailed = await sendQuoteEmail(payload);
-    res.status(201).json({ ok: true, id: quote._id, emailed });
+    let emailed = false;
+    let mailError = null;
+    try {
+      const mail = await sendQuoteEmail(payload);
+      emailed = Boolean(mail?.ok);
+      mailError = mail?.error || null;
+    } catch (mailErr) {
+      mailError = mailErr.message;
+      console.error("[quote-email] unexpected error", mailErr);
+    }
+    console.log("[quotes] saved", { id: quote._id, emailed, mailError });
+    res.status(201).json({ ok: true, id: quote._id, emailed, mailError });
   } catch (err) {
+    console.error("[quotes] save failed", err.message);
     console.error(err);
     res.status(500).json({ error: "Could not save your request. Please try again." });
   }

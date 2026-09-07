@@ -32,6 +32,9 @@ export default function QuoteForm({ t, onSuccess, compact = false }) {
       }
       if (!res.ok) throw new Error(data.error || t.form.error);
 
+      console.log("[quote]", { status: res.status, emailed: data.emailed, mailError: data.mailError, id: data.id });
+      if (data.mailError) console.error("[quote] email error:", data.mailError);
+
       setStatus("success");
       setMessage(t.form.success);
       setForm({ name: "", number: "", location: "", description: "" });
