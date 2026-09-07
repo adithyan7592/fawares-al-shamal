@@ -29,7 +29,7 @@ areas: "Service Areas",
       error: "Something went wrong. Please try again or call us.",
     },
     about: {
-      eyebrow: "02 — About",
+      eyebrow: "About",
       title: "Reliable Scrap & Environmental Services in Dammam",
       p1: "Fawares Al Shamal Environmental Services Co. provides professional scrap collection, transportation, and environmental services to commercial, industrial, and construction businesses across Dammam and the Eastern Province.",
       p2: "We handle a wide range of ferrous and non-ferrous materials, including iron, steel, copper, aluminium, cables, and industrial scrap. Our focus is reliable service, transparent transactions, accurate weighing, efficient logistics, and professional material handling.",
@@ -58,7 +58,7 @@ areas: "Service Areas",
       ],
     },
     materials: {
-      eyebrow: "03 — Materials We Handle",
+      eyebrow: "Materials We Handle",
       title: "Materials We Handle",
       intro:
         "We handle a wide range of ferrous and non-ferrous scrap materials from commercial, industrial, and construction operations across Dammam and the Eastern Province.",
@@ -97,7 +97,7 @@ areas: "Service Areas",
       ],
     },
     process: {
-      eyebrow: "04 — How We Work",
+      eyebrow: "How We Work",
       title: "A Simple & Transparent Process",
       intro:
         "Our process is designed to ensure a seamless experience, from initial enquiry and quotation through collection, accurate weighing, transportation, and timely payment.",
@@ -138,7 +138,6 @@ gallery: {
     "Pile of air-conditioner and aluminium scrap",
     "Cables, wires, and mixed industrial scrap",
     "Worker cutting metal on site",
-    "Yard view with stacked containers and pipes",
     "Shredded sheet-metal scrap pile",
     "Mixed metal scrap with drums and wiring",
     "Steel tubes and ferrous scrap stockpile",
@@ -151,7 +150,7 @@ gallery: {
 },
 
     areas: {
-      eyebrow: "05 — Service Areas",
+      eyebrow: "Service Areas",
       title: "Pickups across Dammam & Eastern Province",
       text: "We collect from commercial, industrial, and construction sites throughout Dammam and the wider Eastern Province. Share your location with the enquiry and our team will confirm collection availability.",
       points: [
@@ -221,7 +220,7 @@ areas: "مناطق الخدمة",
       error: "حدث خطأ. حاول مرة أخرى أو اتصل بنا.",
     },
     about: {
-      eyebrow: "02 — من نحن",
+      eyebrow: "من نحن",
       title: "خدمات خردة وبيئة موثوقة في الدمام",
       p1: "تقدم شركة فوارس الشمال للخدمات البيئية جمع الخردة والنقل والخدمات البيئية للمنشآت التجارية والصناعية ومشاريع البناء في الدمام والمنطقة الشرقية.",
       p2: "نتعامل مع مجموعة واسعة من المواد الحديدية وغير الحديدية بما في ذلك الحديد والصلب والنحاس والألمنيوم والكابلات والخردة الصناعية، مع التركيز على الشفافية والدقة في الوزن والخدمات اللوجستية.",
@@ -250,7 +249,7 @@ areas: "مناطق الخدمة",
       ],
     },
     materials: {
-      eyebrow: "03 — المواد التي نتعامل معها",
+      eyebrow: "المواد التي نتعامل معها",
       title: "المواد التي نتعامل معها",
       intro:
         "نتعامل مع مجموعة واسعة من الخردة الحديدية وغير الحديدية من العمليات التجارية والصناعية ومواقع البناء في الدمام والمنطقة الشرقية.",
@@ -302,7 +301,6 @@ areas: "مناطق الخدمة",
         "كومة من خردة المكيفات والألمنيوم",
         "كابلات وأسلاك وخردة صناعية مختلطة",
         "عامل يقطع المعدن في الموقع",
-        "منظر الساحة مع حاويات وأنابيب مكدّسة",
         "كومة خردة صفائح معدنية ممزقة",
         "خردة معادن مختلطة مع براميل وأسلاك",
         "أنابيب فولاذية وكومة خردة حديدية",
@@ -314,7 +312,7 @@ areas: "مناطق الخدمة",
       ],
     },
     process: {
-      eyebrow: "04 — آلية العمل",
+      eyebrow: "آلية العمل",
       title: "عملية بسيطة وشفافة",
       intro:
         "من الاستفسار وعرض السعر إلى الجمع والوزن والنقل والدفع في الوقت المتفق عليه.",
@@ -342,7 +340,7 @@ areas: "مناطق الخدمة",
       ],
     },
     areas: {
-      eyebrow: "05 — مناطق الخدمة",
+      eyebrow: "مناطق الخدمة",
       title: "جمع من الدمام والمنطقة الشرقية",
       text: "نجمع من المواقع التجارية والصناعية والإنشائية في الدمام والمنطقة الشرقية. أرسل موقعك مع الطلب وسنؤكد إمكانية الجمع.",
       points: [

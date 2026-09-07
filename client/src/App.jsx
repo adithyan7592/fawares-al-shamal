@@ -30,9 +30,8 @@ const MATERIAL_IMAGES = {
   industrial: "/images/industrial.jpg",
   mixed: "/images/mixed.jpg",
 };
-const GALLERY_SRC = Array.from(
-  { length: 14 },
-  (_, i) => `/images/gallery/gallery-${String(i + 1).padStart(2, "0")}.jpg?v=1`
+const GALLERY_SRC = [1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14].map(
+  (i) => `/images/gallery/gallery-${String(i).padStart(2, "0")}.jpg?v=1`
 );
 
 const STEP_ICONS = [MessageCircle, FileText, Scale, Truck, Wallet];
@@ -316,7 +315,7 @@ useEffect(() => {
 
       <section id="areas" className="areas-split">
         <figure className="areas-photo">
-          <img src="/images/gallery/gallery-11.jpg" alt={t.gallery.items[10]} />
+          <img src="/images/gallery/gallery-11.jpg" alt={t.gallery.items[9]} />
         </figure>
         <div className="areas-copy">
           <p className="about-kicker">{t.areas.eyebrow}</p>
