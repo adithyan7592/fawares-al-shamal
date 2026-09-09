@@ -26,7 +26,7 @@ const MATERIAL_IMAGES = {
   ferrous: "/images/ferrous.jpg",
   copper: "/images/copper.jpg",
   aluminium: "/images/aluminium.jpg",
-  cables: "/images/cables.jpg",
+  cables: "/images/cables.jpg?v=2",
   industrial: "/images/industrial.jpg",
   mixed: "/images/mixed.jpg",
 };
