@@ -30,9 +30,14 @@ const MATERIAL_IMAGES = {
   industrial: "/images/industrial.jpg",
   mixed: "/images/mixed.jpg",
 };
-const GALLERY_SRC = [1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14 ,15, 16 ,17, 18, 19, 20 ,21].map(
-  (i) => `/images/gallery/gallery-${String(i).padStart(2, "0")}.jpg?v=1`
-);
+const GALLERY_SRC = [
+  ...[1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 16, 17].map(
+    (i) => `/images/gallery/gallery-${String(i).padStart(2, "0")}.jpg?v=2`
+  ),
+  ...[15, 18, 19, 20, 21].map(
+    (i) => `/images/gallery/gallery-${String(i).padStart(2, "0")}.JPG?v=2`
+  ),
+].sort();
 
 const STEP_ICONS = [MessageCircle, FileText, Scale, Truck, Wallet];
 
