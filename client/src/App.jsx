@@ -17,7 +17,7 @@ import {
 import QuoteForm from "./QuoteForm.jsx";
 import { copy } from "./copy.js";
 
-const PHONE = import.meta.env.VITE_PHONE || "+966 54 361 3464";
+const PHONE = import.meta.env.VITE_PHONE || "+966 535133064";
 const PHONE_2 = import.meta.env.VITE_PHONE_2 || "+966 535133064";
 const EMAIL = import.meta.env.VITE_EMAIL || "infofawares@gmail.com";
 const WHATSAPP = import.meta.env.VITE_WHATSAPP || "966543613464";
@@ -30,7 +30,7 @@ const MATERIAL_IMAGES = {
   industrial: "/images/industrial.jpg",
   mixed: "/images/mixed.jpg",
 };
-const GALLERY_SRC = [1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14].map(
+const GALLERY_SRC = [1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14 ,15].map(
   (i) => `/images/gallery/gallery-${String(i).padStart(2, "0")}.jpg?v=1`
 );
 
