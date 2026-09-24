@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { Helmet } from "react-helmet-async";
 import {
   ArrowRight,
   BadgeCheck,
@@ -30,6 +31,7 @@ const MATERIAL_IMAGES = {
   industrial: "/images/industrial.jpg",
   mixed: "/images/mixed.jpg",
 };
+
 const GALLERY_SRC = [
   ...[1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 16, 17].map(
     (i) => `/images/gallery/gallery-${String(i).padStart(2, "0")}.jpg?v=2`
@@ -55,28 +57,30 @@ export default function App() {
     document.documentElement.dir = t.dir;
     document.body.classList.toggle("rtl", rtl);
   }, [lang, rtl, t.dir]);
+
   useEffect(() => {
-  const el = document.getElementById("about");
-  if (!el) return;
-  const io = new IntersectionObserver(
-    ([entry]) => {
-      if (entry.isIntersecting) el.classList.add("about-in");
-    },
-    { threshold: 0.18 }
-  );
-  io.observe(el);
-  return () => io.disconnect();
-}, []);
-useEffect(() => {
-  if (galleryIndex === null) return;
-  function onKey(e) {
-    if (e.key === "Escape") setGalleryIndex(null);
-    if (e.key === "ArrowRight") setGalleryIndex((i) => (i + 1) % GALLERY_SRC.length);
-    if (e.key === "ArrowLeft") setGalleryIndex((i) => (i - 1 + GALLERY_SRC.length) % GALLERY_SRC.length);
-  }
-  window.addEventListener("keydown", onKey);
-  return () => window.removeEventListener("keydown", onKey);
-}, [galleryIndex]);
+    const el = document.getElementById("about");
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) el.classList.add("about-in");
+      },
+      { threshold: 0.18 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (galleryIndex === null) return;
+    function onKey(e) {
+      if (e.key === "Escape") setGalleryIndex(null);
+      if (e.key === "ArrowRight") setGalleryIndex((i) => (i + 1) % GALLERY_SRC.length);
+      if (e.key === "ArrowLeft") setGalleryIndex((i) => (i - 1 + GALLERY_SRC.length) % GALLERY_SRC.length);
+    }
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [galleryIndex]);
 
   const nav = useMemo(
     () => [
@@ -98,6 +102,35 @@ useEffect(() => {
 
   return (
     <div className={rtl ? "font-arabic" : ""}>
+      {/* Dynamic SEO tags based on language */}
+      <Helmet>
+        <html lang={lang} dir={t.dir} />
+        <title>
+          {lang === "ar"
+            ? "فوارس الشمال | خدمات السكراب والبيئة في الدمام"
+            : "Fawares Al Shamal | Scrap & Environmental Services in Dammam"}
+        </title>
+        <meta
+          name="description"
+          content={
+            lang === "ar"
+              ? "شركة فوارس الشمال للخدمات البيئية — جمع ونقل وتدوير السكراب والمعادن في الدمام والمنطقة الشرقية."
+              : "Fawares Al Shamal Environmental Services Co. — professional scrap collection, transportation, and recycling across Dammam and the Eastern Province."
+          }
+        />
+        <link rel="canonical" href="https://fawaresshamalinfo.com/" />
+        <meta property="og:title" content="Fawares Al Shamal" />
+        <meta
+          property="og:description"
+          content={
+            lang === "ar"
+              ? "شركة فوارس الشمال للخدمات البيئية"
+              : "Fawares Al Shamal Environmental Services Co."
+          }
+        />
+        <meta property="og:url" content="https://fawaresshamalinfo.com/" />
+      </Helmet>
+
       <header className="fixed inset-x-0 top-0 z-40 border-b border-white/10 bg-forest-950/85 backdrop-blur-md">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3">
           <a href="#home" className="flex items-center gap-2.5 text-white">
@@ -177,6 +210,7 @@ useEffect(() => {
         <img
           src="/images/hero.jpg"
           alt="Scrap yard operations"
+          fetchPriority="high"
           className="absolute inset-0 h-full w-full object-cover"
         />
         <div className="hero-overlay absolute inset-0" />
@@ -207,47 +241,48 @@ useEffect(() => {
           </div>
         </div>
       </section>
-<section id="about" className="about-board">
-  <div className="about-copy-cell">
-    <p className="about-kicker">{t.about.eyebrow}</p>
-    <h2 className="about-heading">{t.about.title}</h2>
-    <p className="about-body">{t.about.p1}</p>
-    <p className="about-body">{t.about.p2}</p>
-  </div>
-  <figure className="about-photo">
-    <img src="/images/about.jpg?v=2" alt="Fleet truck used for scrap collection" />
-  </figure>
 
-  <figure className="about-photo">
-    <img src="/images/industrial.jpg" alt="Industrial scrap handling" />
-  </figure>
-  <div className="about-copy-cell">
-    <p className="about-kicker">{t.about.commitment}</p>
-    <h3 className="about-sub">{t.about.points[0].title}</h3>
-    <p className="about-body">{t.about.points[0].text}</p>
-    <h3 className="about-sub">{t.about.points[1].title}</h3>
-    <p className="about-body">{t.about.points[1].text}</p>
-  </div>
+      <section id="about" className="about-board">
+        <div className="about-copy-cell">
+          <p className="about-kicker">{t.about.eyebrow}</p>
+          <h2 className="about-heading">{t.about.title}</h2>
+          <p className="about-body">{t.about.p1}</p>
+          <p className="about-body">{t.about.p2}</p>
+        </div>
+        <figure className="about-photo">
+          <img src="/images/about.jpg?v=2" alt="Fleet truck used for scrap collection" loading="lazy" />
+        </figure>
 
-  <div className="about-copy-cell">
-    <h3 className="about-sub">{t.about.points[2].title}</h3>
-    <p className="about-body">{t.about.points[2].text}</p>
-    <h3 className="about-sub">{t.about.points[3].title}</h3>
-    <p className="about-body">{t.about.points[3].text}</p>
-  </div>
-  <figure className="about-photo">
-    <img src="/images/ferrous.jpg" alt="Ferrous metal collection" />
-  </figure>
+        <figure className="about-photo">
+          <img src="/images/industrial.jpg" alt="Industrial scrap handling" loading="lazy" />
+        </figure>
+        <div className="about-copy-cell">
+          <p className="about-kicker">{t.about.commitment}</p>
+          <h3 className="about-sub">{t.about.points[0].title}</h3>
+          <p className="about-body">{t.about.points[0].text}</p>
+          <h3 className="about-sub">{t.about.points[1].title}</h3>
+          <p className="about-body">{t.about.points[1].text}</p>
+        </div>
 
-  <figure className="about-photo">
-    <img src="/images/aluminium.jpg" alt="Material transport and handling" />
-  </figure>
-  <div className="about-copy-cell">
-    <h3 className="about-sub">{t.about.points[4].title}</h3>
-    <p className="about-body">{t.about.points[4].text}</p>
-    <p className="about-body">{t.areas.text}</p>
-  </div>
-</section>
+        <div className="about-copy-cell">
+          <h3 className="about-sub">{t.about.points[2].title}</h3>
+          <p className="about-body">{t.about.points[2].text}</p>
+          <h3 className="about-sub">{t.about.points[3].title}</h3>
+          <p className="about-body">{t.about.points[3].text}</p>
+        </div>
+        <figure className="about-photo">
+          <img src="/images/ferrous.jpg" alt="Ferrous metal collection" loading="lazy" />
+        </figure>
+
+        <figure className="about-photo">
+          <img src="/images/aluminium.jpg" alt="Material transport and handling" loading="lazy" />
+        </figure>
+        <div className="about-copy-cell">
+          <h3 className="about-sub">{t.about.points[4].title}</h3>
+          <p className="about-body">{t.about.points[4].text}</p>
+          <p className="about-body">{t.areas.text}</p>
+        </div>
+      </section>
 
       <section id="materials" className="bg-cream-50 py-20">
         <div className="mx-auto max-w-6xl px-4">
@@ -259,7 +294,12 @@ useEffect(() => {
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {t.materials.items.map((item) => (
               <article key={item.key} className="overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-stone-200/70">
-                <img src={MATERIAL_IMAGES[item.key]} alt={item.title} className="h-44 w-full object-cover" />
+                <img
+                  src={MATERIAL_IMAGES[item.key]}
+                  alt={item.title}
+                  loading="lazy"
+                  className="h-44 w-full object-cover"
+                />
                 <div className="p-5">
                   <h3 className="font-display text-xl text-forest-800">{item.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-stone-600">{item.text}</p>
@@ -302,25 +342,29 @@ useEffect(() => {
       </section>
 
       <section id="gallery" className="gallery-wrap">
-  <div className="mx-auto max-w-6xl px-4">
-    <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-moss-500">
-      {t.gallery.eyebrow}
-    </p>
-    <h2 className="mt-2 text-center font-display text-3xl text-forest-800 sm:text-4xl">{t.gallery.title}</h2>
-    <p className="mx-auto mt-4 max-w-3xl text-center text-stone-600">{t.gallery.intro}</p>
-    <div className="gallery-grid">
-      {GALLERY_SRC.map((src, i) => (
-        <button key={src} type="button" className="gallery-item" onClick={() => setGalleryIndex(i)}>
-          <img src={src} alt={t.gallery.items[i]} />
-        </button>
-      ))}
-    </div>
-  </div>
-</section>
+        <div className="mx-auto max-w-6xl px-4">
+          <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-moss-500">
+            {t.gallery.eyebrow}
+          </p>
+          <h2 className="mt-2 text-center font-display text-3xl text-forest-800 sm:text-4xl">{t.gallery.title}</h2>
+          <p className="mx-auto mt-4 max-w-3xl text-center text-stone-600">{t.gallery.intro}</p>
+          <div className="gallery-grid">
+            {GALLERY_SRC.map((src, i) => (
+              <button key={src} type="button" className="gallery-item" onClick={() => setGalleryIndex(i)}>
+                <img
+                  src={src}
+                  alt={t.gallery?.items?.[i] || `Fawares Al Shamal Scrap Operations ${i + 1}`}
+                  loading="lazy"
+                />
+              </button>
+            ))}
+          </div>
+        </div>
+      </section>
 
       <section id="areas" className="areas-split">
         <figure className="areas-photo">
-          <img src="/images/gallery/gallery-11.jpg" alt={t.gallery.items[9]} />
+          <img src="/images/gallery/gallery-11.jpg" alt={t.gallery.items[9]} loading="lazy" />
         </figure>
         <div className="areas-copy">
           <p className="about-kicker">{t.areas.eyebrow}</p>
@@ -420,7 +464,7 @@ useEffect(() => {
       <footer className="bg-forest-950 px-4 py-6 text-sm text-cream-200/70">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3">
           <p>© {new Date().getFullYear()} Fawares Al Shamal Environmental Services Co. {t.footer.rights}</p>
-          <a href="/admin" className="hover:text-white">
+          <a href="/admin" rel="nofollow" className="hover:text-white">
             {t.footer.admin}
           </a>
         </div>
@@ -454,40 +498,39 @@ useEffect(() => {
       ) : null}
 
       {galleryIndex !== null ? (
-  <div className="gallery-lightbox" onClick={() => setGalleryIndex(null)}>
-    <button type="button" className="gallery-lightbox-close" aria-label={t.gallery.close}>
-      <X />
-    </button>
-    <button
-      type="button"
-      className="gallery-nav gallery-nav-prev"
-      aria-label={t.gallery.prev}
-      onClick={(e) => {
-        e.stopPropagation();
-        setGalleryIndex((i) => (i - 1 + GALLERY_SRC.length) % GALLERY_SRC.length);
-      }}
-    >
-      ‹
-    </button>
-    <img
-      src={GALLERY_SRC[galleryIndex]}
-      alt={t.gallery.items[galleryIndex]}
-      onClick={(e) => e.stopPropagation()}
-    />
-    <button
-      type="button"
-      className="gallery-nav gallery-nav-next"
-      aria-label={t.gallery.next}
-      onClick={(e) => {
-        e.stopPropagation();
-        setGalleryIndex((i) => (i + 1) % GALLERY_SRC.length);
-      }}
-    >
-      ›
-    </button>
-  </div>
-) : null}
-
+        <div className="gallery-lightbox" onClick={() => setGalleryIndex(null)}>
+          <button type="button" className="gallery-lightbox-close" aria-label={t.gallery.close}>
+            <X />
+          </button>
+          <button
+            type="button"
+            className="gallery-nav gallery-nav-prev"
+            aria-label={t.gallery.prev}
+            onClick={(e) => {
+              e.stopPropagation();
+              setGalleryIndex((i) => (i - 1 + GALLERY_SRC.length) % GALLERY_SRC.length);
+            }}
+          >
+            ‹
+          </button>
+          <img
+            src={GALLERY_SRC[galleryIndex]}
+            alt={t.gallery?.items?.[galleryIndex] || `Gallery image ${galleryIndex + 1}`}
+            onClick={(e) => e.stopPropagation()}
+          />
+          <button
+            type="button"
+            className="gallery-nav gallery-nav-next"
+            aria-label={t.gallery.next}
+            onClick={(e) => {
+              e.stopPropagation();
+              setGalleryIndex((i) => (i + 1) % GALLERY_SRC.length);
+            }}
+          >
+            ›
+          </button>
+        </div>
+      ) : null}
     </div>
   );
 }
