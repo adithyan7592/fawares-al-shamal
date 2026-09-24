@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://fawaresshamalinfo.com/sitemap.xml
+Sitemap: https://fawaresalshamalinfo.com/sitemap.xml
