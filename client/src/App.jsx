@@ -20,7 +20,7 @@ import { copy } from "./copy.js";
 
 const PHONE = import.meta.env.VITE_PHONE || "+966 535133064";
 const PHONE_2 = import.meta.env.VITE_PHONE_2 || "+966 535133064";
-const EMAIL = import.meta.env.VITE_EMAIL || "infofawares@gmail.com";
+const EMAIL = import.meta.env.VITE_EMAIL || "info@fawaresalshamalinfo.com";
 const WHATSAPP = import.meta.env.VITE_WHATSAPP || "966543613464";
 
 const MATERIAL_IMAGES = {
