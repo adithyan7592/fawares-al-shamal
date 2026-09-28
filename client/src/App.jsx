@@ -460,14 +460,34 @@ export default function App() {
         </div>
       </section>
 
-      <footer className="bg-forest-950 px-4 py-6 text-sm text-cream-200/70">
-        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3">
-          <p>© {new Date().getFullYear()} Fawares Al Shamal Environmental Services Co. {t.footer.rights}</p>
-          <a href="/admin" rel="nofollow" className="hover:text-white">
-            {t.footer.admin}
-          </a>
-        </div>
-      </footer>
+ <footer className="bg-forest-950 px-4 py-8 text-sm text-cream-200/70 border-t border-forest-900">
+  <div className="mx-auto max-w-6xl">
+    {/* Keyword & Entity Association Bar */}
+    <div className="mb-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-b border-forest-900/60 pb-6 text-xs text-cream-200/60">
+      <div>
+        <p className="font-medium text-cream-200/90">
+          Fawares Al Shamal Environmental Services Co. (fawaresalshamal)
+        </p>
+        <p className="mt-1">
+          Industrial Scrap Metal Buyers & Environmental Recycling Solutions | Dammam & Eastern Province, KSA
+        </p>
+      </div>
+      <p className="font-mono text-cream-200/80">
+        fawaresalshamalinfo.com
+      </p>
+    </div>
+
+    {/* Copyright & Admin Links */}
+    <div className="flex flex-wrap items-center justify-between gap-3">
+      <p>
+        © {new Date().getFullYear()} Fawares Al Shamal Environmental Services Co. (fawaresalshamal). {t.footer.rights}
+      </p>
+      <a href="/admin" rel="nofollow" className="hover:text-white transition-colors">
+        {t.footer.admin}
+      </a>
+    </div>
+  </div>
+</footer>
 
       <a
         href={`https://wa.me/${WHATSAPP}`}
