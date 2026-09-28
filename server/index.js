@@ -16,6 +16,10 @@ const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "fawares-admin";
 const app = express();
 app.use(cors());
 app.use(express.json({ limit: "200kb" }));
+app.use('/sitemap.xml', (req, res, next) => {
+  res.setHeader('Cache-Control', 'public, max-age=86400, s-maxage=86400');
+  next();
+});
 
 function validateQuote(body) {
   const name = String(body?.name || "").trim();
