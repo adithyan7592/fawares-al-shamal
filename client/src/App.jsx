@@ -102,32 +102,33 @@ export default function App() {
   return (
     <div className={rtl ? "font-arabic" : ""}>
       {/* Dynamic SEO tags based on language */}
+  {/* Dynamic SEO tags based on language */}
       <Helmet>
         <html lang={lang} dir={t.dir} />
         <title>
           {lang === "ar"
-            ? "فوارس الشمال | خدمات السكراب والبيئة في الدمام"
-            : "Fawares Al Shamal | Scrap & Environmental Services in Dammam"}
+            ? "فوارس الشمال | شراء سكراب وخدمات بيئية بالدمام"
+            : "Fawares Al Shamal | Scrap Buyers & Services in Dammam"}
         </title>
         <meta
           name="description"
           content={
             lang === "ar"
-              ? "شركة فوارس الشمال للخدمات البيئية — جمع ونقل وتدوير السكراب والمعادن في الدمام والمنطقة الشرقية."
-              : "Fawares Al Shamal Environmental Services Co. — professional scrap collection, transportation, and recycling across Dammam and the Eastern Province."
+              ? "شركة فوارس الشمال (fawaresalshamal) — شراء ونقل وتدوير السكراب والمعادن بالدمام والمنطقة الشرقية."
+              : "Fawares Al Shamal (fawaresalshamal) — professional scrap buyers, metal collection, and recycling across Dammam and Eastern Province."
           }
         />
-        <link rel="canonical" href="https://fawaresshamalinfo.com/" />
-        <meta property="og:title" content="Fawares Al Shamal" />
+        <link rel="canonical" href="https://fawaresalshamalinfo.com/" />
+        <meta property="og:title" content="Fawares Al Shamal | Scrap Buyers & Services in Dammam" />
         <meta
           property="og:description"
           content={
             lang === "ar"
-              ? "شركة فوارس الشمال للخدمات البيئية"
-              : "Fawares Al Shamal Environmental Services Co."
+              ? "شركة فوارس الشمال للخدمات البيئية وشراء السكراب بالدمام"
+              : "Fawares Al Shamal Environmental Services Co. — Scrap Buyers in Dammam"
           }
         />
-        <meta property="og:url" content="https://fawaresshamalinfo.com/" />
+        <meta property="og:url" content="https://fawaresalshamalinfo.com/" />
       </Helmet>
 
       <header className="fixed inset-x-0 top-0 z-40 border-b border-white/10 bg-forest-950/85 backdrop-blur-md">
